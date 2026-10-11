@@ -1,32 +1,26 @@
 # Story-Driven Technical Writing Reference
 
-A reusable reference for writing technical articles that teach a concept by putting the
-reader inside a concrete situation the concept naturally belongs in, then working
-through that situation with runnable code and its real output.
+Use this reference to write technical articles around practical examples. Explain a
+concept with runnable code and output readers can check.
 
-It documents how a strong article in this style is built: the narrative frame, the
-structure, the treatment of code and output, the voice, the sentence craft, and the
-feedback habits that make the writing trustworthy. It is written generically — the
-patterns stand on their own and are meant to be picked up by anyone writing technical
-content, in any domain.
+The guides cover example choice, article structure, code, output, voice, sentence
+style, and reader feedback. Adapt them to your subject and audience.
 
 Read this file first, then use the guides according to what you are doing:
 
-| Document | What it covers |
+| Document | Use it to |
 |---|---|
-| [style-reference.md](style-reference.md) | The complete pattern library: narrative framing, article structure, code style, voice, sentence patterns, and the feedback loop. This is the core reference. |
-| [article-templates.md](article-templates.md) | Fill-in skeletons for four article shapes (concept tutorial, cleaning/data pipeline, project write-up, dashboard/BI build), plus front-matter and metadata conventions. |
-| [quality-checklist.md](quality-checklist.md) | A pre-publish checklist in the order of a real editing pass: narrative, code, clarity, takeaway, and metadata checks. |
-| [analysis/analysis-notes.md](analysis/analysis-notes.md) | *(Appendix)* Per-article notes recording how one published 13-article series uses these patterns, plus the cross-article synthesis that produced this reference. |
-| [analysis/source-articles.md](analysis/source-articles.md) | *(Appendix)* The 13 source articles of that series, for verification and further study. |
+| [style-reference.md](style-reference.md) | Look up guidance on examples, structure, code, voice, and sentence style. |
+| [article-templates.md](article-templates.md) | Start a concept tutorial, data-cleaning guide, project write-up, or dashboard article. |
+| [quality-checklist.md](quality-checklist.md) | Review an article before publishing. |
+| [analysis/analysis-notes.md](analysis/analysis-notes.md) | See how the patterns appear in the 13 source articles. |
+| [analysis/source-articles.md](analysis/source-articles.md) | Open the source articles. |
 
-## The core idea in three sentences
+## Core idea
 
-A technical concept is introduced by placing it inside a concrete, everyday situation
-that the concept belongs in such as a shop, an office, a workshop, a queue. The article then
-explains the concept by working through that situation with code that produces output
-the reader can check. The situation does the motivating; the output does the proving;
-the prose does the explaining in between.
+Start with an everyday situation that needs the concept, such as a shop, office, or
+workshop. Use runnable code to address the problem and show output readers can check.
+Explain how the code works.
 
 ## How to use this reference
 
@@ -37,20 +31,18 @@ the prose does the explaining in between.
    be?", "how do I introduce a running example?") in
    [style-reference.md](style-reference.md).
 
-Nothing here is license. These are patterns that consistently produce readable,
-trustworthy technical writing, not patterns that could replace judgment. When a
-template and a good idea conflict, follow the idea and note why it was different.
+This guide offers patterns, not rules. Use them to support your judgment, not replace
+it. When a template and a good idea conflict, follow the idea and note why.
 
 ## Notes for contributors
 
-Corrections welcome. If you write an article using this reference and make choices it
-does not cover, add a note to `analysis/analysis-notes.md` under the appropriate
-section so the record grows with your work.
+Send corrections or add a note to `analysis/analysis-notes.md` when you make a choice
+this reference does not cover.
 
 ---
 
 ## Credit
 
-Patterns distilled from [David Mwandairo's public series](https://dev.to/david_mwandairo)
-of 13 technical articles on SQL, data analysis, Power BI, and Python. The appendix in
-`analysis/` records the per-article evidence behind every claim in this reference.
+This reference draws on [David Mwandairo's public series](https://dev.to/david_mwandairo)
+of 13 articles about SQL, data analysis, Power BI, and Python. The `analysis/`
+appendix links each guideline to examples from the series.

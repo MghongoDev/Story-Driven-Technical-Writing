@@ -1,15 +1,11 @@
 # Article Templates
 
-Fill-in skeletons for the four article shapes in this style. Copy one, replace the
-bracketed placeholders, and draft the body. Each template lists the sections in
-order, with a note on each section's job and typical length.
+Choose a template, replace its placeholders, and draft the article. Each skeleton
+lists sections in order and describes what to include.
 
-Per the source series this reference came from, the templates are data-domain-shaped —
-SQL, PostgreSQL, Power BI, DAX, and CSV-cleaning pipelines are the native examples.
-If you write for a different technical domain, keep the section rhythm and generalize
-the tool names; do not drop the domain specifics in favor of abstraction. A
-cleaning-pipeline article in another field still has a Stage 1 and a Step 5; only the
-vocabulary moves.
+The source series focuses on data work: SQL, PostgreSQL, Power BI, DAX, and
+CSV-cleaning pipelines. For another domain, keep the structure and use that field's
+terms and examples.
 
 ---
 
@@ -36,9 +32,8 @@ shows the output you'd see in [tool]."]
 definitions. If a dataset was introduced in an earlier article, link to it ("See the
 tables used for this article here") and show only what is new.]
 
-[Optional but signature: declare the data's deliberate imperfections in a short
-paragraph. Name each crack in one sentence. Say why they are there ("Real databases
-have rows like this."). These become the material for later sections.]
+[Optional: list deliberate data problems and explain why the examples include them.
+Use the same problems in later sections.]
 
 ## [Concept family, first member]
 
@@ -53,8 +48,8 @@ mirror images, cover the second by contrast with the first.]
 
 ## [The hardest one]
 
-[The concept that needs a chain or a self-reference. Walk the reader through the
-mechanism step by step, in prose, before or after the code — not instead of it.]
+[For a concept that uses a chain or self-reference, explain the mechanism in prose
+before or after the code, as well as showing it in code.]
 
 ## A recap table (if the article covered a family)
 
@@ -80,14 +75,14 @@ Notes:
 
 ## Template B: Cleaning pipeline walkthrough (the sequential fix-it)
 
-Use for: articles where the work genuinely happens in sequence — load, audit, fix,
+Use for articles where the work happens in sequence: load, audit, fix,
 constrain, load out. This is the "staging table" article shape.
 
 ```markdown
 # [Project name]: Cleaning and Analyzing [data source]
 
-[Hook: one real defect stated as a fact, the absurdity it causes, and the brief from
-a named person ("The Hotel Director wants to know..."). Two paragraphs max.]
+[Hook: State one data defect and its effect, then give the brief from a named person
+("The Hotel Director wants to know..."). Use no more than two paragraphs.]
 
 ## The brief in plain words
 
@@ -95,11 +90,11 @@ a named person ("The Hotel Director wants to know..."). Two paragraphs max.]
 grouped by the stakeholder's word for them ("money, busy periods, staff, guest
 happiness").]
 
-## The plan: [short analogy for the progression]
+## The plan
 
-[A flow diagram in plain text: raw file → staging (all TEXT) → fixes one defect at a
-time → clean table (real types plus CHECK constraints) → view → the analyses. State
-why staging is all TEXT in one sentence.]
+[Show the sequence in a plain-text diagram: raw file → staging (all TEXT) → fixes →
+clean table (typed columns and CHECK constraints) → view → analysis. Explain why the
+staging table uses TEXT.]
 
 ## Step 1: [Get the data in without losing a row]
 
@@ -119,23 +114,21 @@ missing value (a gap) from a wrong value (a defect).]
 Each follows the same loop:
   1. Show the defect (a SELECT with its grid).
   2. State the rule you will apply, and why, in one sentence. Name any guess
-     explicitly ("That is an assumption, and I say so here so a reader can overrule
-     it.") and the witness column that will confirm or kill it.
-  3. Show the UPDATE (with a WHERE clause — say why).
-  4. Re-run the check. It returns the proof ("All 285 agree, so both guessed rules
-     survived the test.").]
+     explicitly, and identify the column you will use to test it.
+  3. Show the UPDATE with a WHERE clause, and explain why it is there.
+  4. Re-run the check. It returns no rows if the fix worked.]
 
-## Step 4: [Move the clean rows into a table that says no]
+## Step 4: [Move clean rows into a constrained table]
 
-[The clean table with real types and CHECK constraints. Deliberately insert one bad
-row and show the database refuse it. Then the view that prepares the columns the
-analysis needs. State the business definitions here (what counts as revenue).]
+[Show the clean table with typed columns and CHECK constraints. Insert one invalid
+row and show the database reject it. Then define the view and business terms the
+analysis needs, including what counts as revenue.]
 
 ## Step 5: [Answer the [stakeholder]'s questions]
 
 [One subsection per brief question, Q1..Q6. Each shows the query, the grid, and a
-one-sentence reading of what the numbers mean — including one line that names what a
-different metric would say instead ("Volume and value are different rankings").]
+one-sentence reading of what the numbers mean. Name what a different metric would
+show instead ("Volume and value are different rankings").]
 
 ## What the [stakeholder] gets
 
@@ -156,8 +149,8 @@ for. End with an invitation to correct you in the comments.]
 
 ## Template C: Project write-up / data story (narrative first)
 
-Use for: telling the story of an end-to-end analysis, when the journey (not the
-syntax) is the point. Chapters, not steps.
+Use when the analysis process matters more than the syntax. Organize the article in
+chapters rather than steps.
 
 ```markdown
 # [The data story title, e.g. The [Platform] Data Story]
@@ -171,55 +164,52 @@ was at stake ("Present on Friday. The CEO will be in the room.")]
 [What arrived, how it was staged, why the staging choices were made ("That
 everything-is-text decision looks lazy, but it's the opposite.").]
 
-## Chapter 2: [The damage inventory — make it vivid]
+## Chapter 2: [The data problems]
 
-[Title the problems, e.g. "Twenty-Three Ways a Spreadsheet Can Lie to You."
-Subsections per defect family, each with the SELECT, the output, the fix. Add one
-sentence per fix explaining why that instrument rather than a plain UPDATE.]
+[Group the problems by type. For each, show the SELECT, its output, the fix, and why
+you chose that fix over a plain UPDATE.]
 
-## Chapter 3: [The view that everything else stands on]
+## Chapter 3: [The view used for analysis]
 
-[The presentation layer. Why it exists, what it computes once so the queries below
-don't repeat it.]
+[Explain why the presentation layer exists and which values it computes for the
+queries below.]
 
 ## Chapter 4: [N business questions, N answers]
 
-[Q1..QN, each with query, output, and the sentence that turns the number into a
-boardroom statement ("RT001 alone accounts for roughly a quarter of all route
-revenue"). Where a number has a confound, name it in the same section.]
+[Q1..QN, each with a query, output, and a sentence explaining what the result means
+for the business ("RT001 alone accounts for roughly a quarter of all route revenue").
+Name any confounding factor in the same section.]
 
-## Chapter 5: [What the [boss] actually needs to hear]
+## Chapter 5: [Findings for the stakeholder]
 
-[The findings with all SQL stripped away. One sentence per finding, imperative or
+[The findings without SQL. Use one sentence per finding, imperative or
 declarative ("Protect it.", "price it like one").]
 
-## The part that doesn't show up in a query
+## Work behind the results
 
-[One to two paragraphs on the unglamorous work that made the answers possible, and
-the principle it proves. End with a line that reframes the project inside its real
-world — a shop counter, a boarding gate, a transport stage.]
+[Describe the work behind the results and what it shows. Connect the project to its
+setting, such as a shop, airport, or transport service.]
 ```
 
 ---
 
 ## Template D: Dashboard / BI build article
 
-Use for: the build-log that follows a project write-up, when the artifact is a
-dashboard and the interesting decisions are about shape, labels, and DAX.
+Use for a dashboard article that follows a project write-up. Focus on layout, labels,
+and DAX.
 
 ```markdown
 # Building the [System] Dashboard in [tool]
 
-[Hook: the instruction the artifact must satisfy, quoted verbatim, and the fact that
-"professional" is not testable — so state YOUR three tests here (e.g. numbers tie to
-the database; labels say what they mean; a busy manager gets an answer in under a
-minute). Tell the reader there is a deliberate mistake to find ("I'll also set you a
-puzzle. Page three contains a mistake that sits in plain sight.").]
+[Hook: Quote the request the dashboard must meet. Because "professional" has no
+agreed test, state three criteria, such as matching the database, clear labels, and
+finding an answer in under a minute. You can also ask readers to find a specific
+mistake on page three.]
 
 ## First: how I prepared the data for BI
 
-[A dashboard does not clean data. Import the view, not the table. State the grain of
-the model. Define the business terms (realised vs lost revenue) in a small table:
+[Prepare and clean the data in SQL, then import the view. State the grain of the
+model. Define the business terms (realised vs lost revenue) in a small table:
 Term | Rule | Where it lives.]
 
 ## Does the dashboard agree with the database?
@@ -229,8 +219,8 @@ headline number. State the test passed.]
 
 ## The dashboard, page by page
 
-[One subsection per page: which visuals, what each carries, and one honest sentence
-about what a reader glancing from across a table gets.]
+[One subsection per page: list the visuals and what each shows. State what a manager
+can learn from each page.]
 
 ## The [DAX] behind each metric
 
@@ -238,16 +228,16 @@ about what a reader glancing from across a table gets.]
 the code. Explain the non-obvious ones (DIVIDE's zero handling, REMOVEFILTERS,
 HASONEVALUE) in one sentence each.]
 
-## Key insights
+## Findings and evidence
 
 [Numbered or bolded findings with exact figures. Each ties back to a query or
 measure named above. Findings with confounds get their limits stated in place.]
 
 ## How I communicated the findings
 
-[The choices that made it land: answer before evidence, one colour, spread beside
-the average, risk stated as a question, numbers checked against SQL first. One
-paragraph each.]
+[Explain how you presented each finding and why. Describe choices such as showing the
+answer before the evidence, using one colour, comparing the spread with the average,
+or checking figures against SQL.]
 
 ## What I learned from presenting
 
@@ -257,7 +247,7 @@ paragraph each.]
 [Split by priority: "Fix first:...", "Fix next:...", "Do next time:...". Include the
 puzzle's answer here, with the diagnostic query that proves it.]
 
-## What comes next
+## Repairs and unanswered questions
 
 [The repair list in one sentence, then the question the data raised that the data
 cannot answer, and where that answer lives.]
